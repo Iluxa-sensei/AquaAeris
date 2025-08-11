@@ -1,12 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
-
-export default defineConfig(({ mode }) => {
+export default defineConfig(function (_a) {
+    var mode = _a.mode;
     // If you deploy to user.github.io/repo, set base to '/repo/'
-    const base = "/AquaAeris/";
+    var base = "/AquaAeris/";
     return {
-        base,
+        base: base,
         plugins: [react()],
         resolve: {
             alias: {
@@ -15,5 +15,3 @@ export default defineConfig(({ mode }) => {
         },
     };
 });
-
-
