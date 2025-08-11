@@ -318,10 +318,12 @@ function Solution() {
 
 function Products() {
   const { t } = useI18n();
+  // Bundle local image into build output so it works on GitHub Pages
+  const aquaSocietyImg = new URL("../../images/products/aquasociety.png", import.meta.url).href;
   const products = [
     { name: "AquaAeris", img: "https://res.cloudinary.com/du1lmawkd/image/upload/v1754750104/20250730_2001_Metallic_Water_Dispenser_remix_01k1dxfm4ren5bgxw0gxyqvknx_1_k2cdo4.png", desc: t("productHomeDesc") },
     { name: "AquaTourism", img: "https://res.cloudinary.com/du1lmawkd/image/upload/v1754748472/untitled1_ccqukc.png", desc: t("productTourismDesc") },
-    { name: "AquaSociety", img: "/images/products/aquasociety.png", desc: t("productSocietyDesc") },
+    { name: "AquaSociety", img: aquaSocietyImg, desc: t("productSocietyDesc") },
   ];
   return (
     <section id="products" className="py-12 md:py-16 bg-secondary/40">
