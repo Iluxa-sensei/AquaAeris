@@ -181,23 +181,25 @@ function Hero() {
       <div className="container relative z-10 py-1">
         <div className="grid md:[grid-template-columns:0.8fr_1.2fr] xl:[grid-template-columns:0.7fr_1.3fr] gap-6 items-center">
           {/* Text content */}
-          <div className="space-y-4">
-            <h1 className="font-display text-5xl md:text-6xl xl:text-7xl leading-tight font-bold text-white opacity-0 animate-hero-slide-up" style={{ animationDelay: "100ms" }}>
-              {t("brand")} — <span className="text-[#00BFFF]">{t("cleanWater")}</span> <span className="text-[#00BFFF]">{t("fromAir")}</span>. {t("anywhere")}.
+          <div className="space-y-4 md:pl-8 xl:pl-12 -mt-4 md:-mt-6">
+            <h1 className="font-display text-4xl md:text-5xl xl:text-6xl leading-tight font-bold text-white opacity-0 animate-hero-slide-up" style={{ animationDelay: "100ms" }}>
+              {t("brand")}
             </h1>
-            <p className="text-white/90 text-lg md:text-xl max-w-xl leading-relaxed opacity-0 animate-hero-slide-up" style={{ animationDelay: "200ms" }}>
+            <p className="text-white/90 text-lg md:text-xl max-w-xl md:max-w-2xl leading-relaxed opacity-0 animate-hero-slide-up" style={{ animationDelay: "200ms" }}>
               {t("heroDescription")}
             </p>
             <div className="opacity-0 animate-hero-scale" style={{ animationDelay: "300ms" }}>
-              <Button
-                size="lg"
-                className="bg-[#007BFF] hover:bg-[#0056b3] text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                onClick={() => {
-                  document.getElementById("solution")?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                {t("learnMore")}
-              </Button>
+              <div className="flex justify-start">
+                <Button
+                  size="lg"
+                  className="bg-[#007BFF] hover:bg-[#0056b3] text-white px-10 py-5 text-xl rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  onClick={() => {
+                    document.getElementById("solution")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  {t("learnMore")}
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -222,7 +224,7 @@ function Hero() {
                   auto-rotate-delay="0"
                   rotation-per-second="10deg"
                   bounds="tight"
-                  camera-orbit="0deg 80deg 45%"
+                  camera-orbit="0deg 80deg 110%"
                   field-of-view="15deg"
                   disable-zoom
                   exposure="1.0"
@@ -234,6 +236,21 @@ function Hero() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Curved animated tagline along the wave (white text) */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2]" aria-hidden>
+        <svg viewBox="0 0 1440 220" preserveAspectRatio="none" className="w-full h-[120px] md:h-[240px]">
+          <defs>
+            <path id="hero-curve-path" d="M0,110 C360,100 720,140 1040,90 C1220,70 1340,65 1440,80" />
+          </defs>
+          <text fill="rgba(255,255,255,0.95)" fontSize="30" fontFamily="Montserrat, Inter, ui-sans-serif">
+            <textPath href="#hero-curve-path" startOffset="100%">
+              {t("cleanWater")} {t("fromAir")} {". "}{t("anywhere")}.
+              <animate attributeName="startOffset" from="100%" to="0%" dur="8s" repeatCount="indefinite" />
+            </textPath>
+          </text>
+        </svg>
       </div>
     </section>
   );
@@ -707,4 +724,3 @@ const Index = () => {
 };
 
 export default Index;
-
