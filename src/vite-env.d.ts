@@ -17,6 +17,20 @@ declare namespace JSX {
             shadowIntensity?: number | string;
             disableZoom?: boolean | string;
             interactionPrompt?: 'auto' | 'none' | 'when-focused';
+            // Support dash-case attributes actually used in markup
+            'camera-controls'?: boolean | string;
+            'auto-rotate'?: boolean | string;
+            'auto-rotate-delay'?: number | string;
+            'rotation-per-second'?: string;
+            'shadow-intensity'?: number | string;
+            'environment-image'?: string;
+            'disable-zoom'?: boolean | string;
+            'interaction-prompt'?: 'auto' | 'none' | 'when-focused';
+            'camera-orbit'?: string;
+            'field-of-view'?: string;
+            bounds?: 'tight' | 'legacy' | string;
+            // Fallback for any other attributes
+            [key: string]: any;
         };
     }
 }
