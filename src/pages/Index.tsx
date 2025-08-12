@@ -141,6 +141,7 @@ function Header() {
 
 function Hero() {
   const { t } = useI18n();
+  const modelUrl = `${import.meta.env.BASE_URL}KOTSU.glb`;
   return (
     <section id="top" className="relative overflow-hidden min-h-[100vh] flex items-center">
       {/* Blue gradient background */}
@@ -178,7 +179,7 @@ function Hero() {
       <div className="pointer-events-none absolute bottom-20 right-1/4 w-16 h-16 bg-white/8 animate-morphing-blob animate-float" aria-hidden style={{ animationDelay: '4s' }} />
 
       <div className="container relative z-10 py-1">
-        <div className="grid md:grid-cols-2 gap-6 items-center">
+        <div className="grid md:[grid-template-columns:0.8fr_1.2fr] xl:[grid-template-columns:0.7fr_1.3fr] gap-6 items-center">
           {/* Text content */}
           <div className="space-y-4">
             <h1 className="font-display text-5xl md:text-6xl xl:text-7xl leading-tight font-bold text-white opacity-0 animate-hero-slide-up" style={{ animationDelay: "100ms" }}>
@@ -211,13 +212,24 @@ function Hero() {
                 <div className="absolute top-12 left-4 w-1.5 h-1.5 bg-white/50 rounded-full animate-float" style={{ animationDelay: '2.5s' }} />
               </div>
 
-              {/* Device image sitting on the wave line */}
+              {/* 3D model instead of static image */}
               <div className="relative flex items-center justify-center">
-                <img
-                  src="https://res.cloudinary.com/du1lmawkd/image/upload/v1754750104/20250730_2001_Metallic_Water_Dispenser_remix_01k1dxfm4ren5bgxw0gxyqvknx_1_k2cdo4.png"
-                  alt="AquaAeris — чистая вода из воздуха"
-                  className="object-contain w-[65%] h-auto"
-                />
+                <model-viewer
+                  src={modelUrl}
+                  alt="3D модель AquaAeris"
+                  camera-controls
+                  auto-rotate
+                  auto-rotate-delay="0"
+                  rotation-per-second="10deg"
+                  bounds="tight"
+                  camera-orbit="0deg 80deg 45%"
+                  field-of-view="15deg"
+                  disable-zoom
+                  exposure="1.0"
+                  shadow-intensity="0.3"
+                  style={{ background: 'transparent', width: '100%', height: '90vh', display: 'block' }}
+                  className="block w-full h-[85vh] md:h-[90vh]"
+                ></model-viewer>
               </div>
             </div>
           </div>
