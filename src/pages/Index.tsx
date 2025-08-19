@@ -624,10 +624,6 @@ function Schematic() {
 
 function Contacts() {
   const { t } = useI18n();
-  function submit(e: React.FormEvent) {
-    e.preventDefault();
-    alert("Спасибо! Мы свяжемся с вами.");
-  }
   return (
     <section id="contacts" className="py-12 md:py-16 bg-secondary/40">
       <div className="container">
@@ -636,7 +632,7 @@ function Contacts() {
           <div className="space-y-4">
             <p className="text-muted-foreground">{t("phone")}:</p>
             <ul className="space-y-2">
-              {["+7 (778) 643-41-34 Таир У.", "+7 (705) 863-42-42 Нурымхан Б.",  "+7 (778) 732-11-36 Илияс С.", "+7 (775) 748-11-40 Алихан Б."].map((p) => (
+              {["+7 (705) 863-42-42", "+7 (775) 748-11-40", "+7 (778) 643-41-34", "+7 (778) 732-11-36"].map((p) => (
                 <li key={p}><a className="story-link" href={`tel:${p.replace(/[^+\d]/g, "")}`}>{p}</a></li>
               ))}
             </ul>
@@ -645,18 +641,27 @@ function Contacts() {
               <Instagram className="inline h-4 w-4 mr-2" /> @aquaaeris.kz
             </a>
           </div>
-          <form onSubmit={submit} className="space-y-4">
+          <form action="https://formsubmit.co/iluxaser07@gmail.com" method="POST" className="space-y-4">
+            {/* FormSubmit settings */}
+            <input type="hidden" name="_subject" value="AquaAeris: Новое сообщение с сайта" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input
+              type="hidden"
+              name="_next"
+              value={typeof window !== "undefined" ? `${window.location.origin}/#contacts` : ""}
+            />
             <div>
               <label className="block mb-2 text-sm" htmlFor="name">{t("name")}</label>
-              <Input id="name" required />
+              <Input id="name" name="name" required />
             </div>
             <div>
               <label className="block mb-2 text-sm" htmlFor="email">{t("email")}</label>
-              <Input id="email" type="email" required />
+              <Input id="email" name="email" type="email" required />
             </div>
             <div>
               <label className="block mb-2 text-sm" htmlFor="message">{t("message")}</label>
-              <Textarea id="message" required />
+              <Textarea id="message" name="message" required />
             </div>
             <Button type="submit">{t("send")}</Button>
           </form>
